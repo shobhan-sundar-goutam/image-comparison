@@ -4,7 +4,7 @@ Hi there! 👋 I'm Shobhan Sundar Goutam. This application is designed to compar
 
 <br>
 
-- Live Link:- [Image Comaparison app](https://image-comparison-ivory.vercel.app)
+- Live Link:- [Image Comaparison app](https://image-comparison.netlify.app)
 
 ### Demo video
 
