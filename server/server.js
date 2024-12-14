@@ -1,18 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const multer = require('multer');
-const sharp = require('sharp');
-const pixelmatch = require('pixelmatch');
-const { PNG } = require('pngjs');
-const fs = require('fs');
+import cors from 'cors';
+import express, { json, urlencoded } from 'express';
+import { writeFileSync } from 'fs';
+import multer, { memoryStorage } from 'multer';
+import pixelmatch from 'pixelmatch';
+import { PNG } from 'pngjs';
+import sharp from 'sharp';
 
 const app = express();
 
-const storage = multer.memoryStorage();
+const storage = memoryStorage();
 const upload = multer({ storage });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
@@ -32,7 +32,7 @@ function compareImages(img1, img2) {
   const { width, height } = img1;
   const diff = new PNG({ width, height });
 
-  const diffPixelCount = pixelmatch.default(
+  const diffPixelCount = pixelmatch(
     img1.data,
     img2.data,
     diff.data,
@@ -82,7 +82,7 @@ app.post(
       const { similarity, diff } = compareImages(img1, img2);
 
       const diffPath = './diff.png';
-      fs.writeFileSync(diffPath, PNG.sync.write(diff));
+      writeFileSync(diffPath, PNG.sync.write(diff));
 
       res.status(200).json({ similarity });
     } catch (err) {

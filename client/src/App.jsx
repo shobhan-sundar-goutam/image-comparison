@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 
+const BASE_URL = 'http://localhost:4000';
+
 function App() {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
@@ -35,15 +37,11 @@ function App() {
     setError('');
 
     try {
-      const response = await axios.post(
-        'http://localhost:4000/compare',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/compare`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       setSimilarity(response.data.similarity);
     } catch (error) {
       console.log(error);
