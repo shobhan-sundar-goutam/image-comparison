@@ -22,9 +22,9 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(23, image1, image2);
     if (!image1 || !image2) {
       setError('Please upload both images.');
+      setSimilarity(null);
       return;
     }
 
@@ -83,7 +83,7 @@ function App() {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      {similarity !== null && (
+      {similarity && (
         <div>
           <h3>Results:</h3>
           <p>
