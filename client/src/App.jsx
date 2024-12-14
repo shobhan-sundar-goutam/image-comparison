@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-const BASE_URL = 'http://localhost:4000';
+// const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'https://image-comparison-umwv.onrender.com';
 
 function App() {
   const [image1, setImage1] = useState(null);
