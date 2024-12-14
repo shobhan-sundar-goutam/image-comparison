@@ -18,7 +18,7 @@ app.use(
     credentials: true,
     origin: [
       'http://localhost:5173',
-      'https://image-comparison-ssg.vercel.app/',
+      'https://image-comparison-ssg.vercel.app',
     ],
   })
 );

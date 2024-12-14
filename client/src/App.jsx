@@ -32,8 +32,6 @@ function App() {
     formData.append('image1', image1);
     formData.append('image2', image2);
 
-    console.log(32, formData);
-
     setLoading(true);
     setError('');
 
