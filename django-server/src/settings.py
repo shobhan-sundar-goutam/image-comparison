@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-ue=@vii$nn83m^c(r8^4wcx5#&y*k&mhbxe+_4uzc@pw8-1=8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['image-comparison-django.onrender.com']
 
 # Application definition
 
