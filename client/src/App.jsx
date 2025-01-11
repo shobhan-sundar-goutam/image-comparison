@@ -2,7 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 
 // const BASE_URL = 'http://localhost:4000';
-const BASE_URL = 'https://image-comparison-umwv.onrender.com';
+// const BASE_URL = 'https://image-comparison-umwv.onrender.com';
+const BASE_URL = 'http://127.0.0.1:8000';
 
 function App() {
   const [image1, setImage1] = useState(null);
@@ -41,7 +42,9 @@ function App() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      setSimilarity(response.data.similarity);
+      console.log(response.data);
+
+      setSimilarity(response.data);
     } catch (error) {
       console.log(error);
       setError('There was an error comparing the images.');
@@ -78,6 +81,12 @@ function App() {
           <button type='submit' disabled={loading}>
             {loading ? 'Comparing...' : 'Compare Images'}
           </button>
+          {loading && (
+            <p>
+              The app is hosted on the free tier of Render, so there may be a
+              slight delay in response.
+            </p>
+          )}
         </div>
       </form>
 
@@ -87,13 +96,42 @@ function App() {
         <div>
           <h3>Results:</h3>
           <p>
-            Similarity:{' '}
-            <span style={{ color: `${similarity >= 90 ? 'green' : 'red'}` }}>
-              {similarity}%
+            ORB Similarity:{' '}
+            <span
+              style={{
+                color: `${similarity.orb_similarity >= 90 ? 'green' : 'red'}`,
+              }}
+            >
+              {similarity.orb_similarity}%
             </span>
           </p>
-          <p style={{ color: `${similarity >= 90 ? 'green' : 'red'}` }}>
-            {similarity >= 90 ? 'Images are similar' : 'Images are not similar'}
+          <p
+            style={{
+              color: `${similarity.orb_similarity >= 90 ? 'green' : 'red'}`,
+            }}
+          >
+            {similarity.orb_similarity >= 90
+              ? 'Images are similar'
+              : 'Images are not similar because it could not pass the ORB similarity threshold which is 90%'}
+          </p>
+          <p>
+            Structural Similarity:{' '}
+            <span
+              style={{
+                color: `${similarity.ssim_similarity >= 90 ? 'green' : 'red'}`,
+              }}
+            >
+              {similarity.ssim_similarity}%
+            </span>
+          </p>
+          <p
+            style={{
+              color: `${similarity.ssim_similarity >= 90 ? 'green' : 'red'}`,
+            }}
+          >
+            {similarity.ssim_similarity >= 90
+              ? 'Images are similar'
+              : 'Images are not similar because it could not pass the structural similarity threshold which is 90%'}
           </p>
           {/* {diffImage && (
             <div>
