@@ -9,9 +9,12 @@ Hi there! 👋 I'm Shobhan Sundar Goutam. This application is designed to compar
 
 - Live Link:- [Image Comaparison app](https://image-comparison.netlify.app)
 
-### Demo video
+### Demo videos
 
 #### Django backend
+
+https://github.com/user-attachments/assets/9a59cb26-08b7-498f-bab8-1583db76069e
+
 
 #### Node.js backend
 
